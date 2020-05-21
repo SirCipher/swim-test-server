@@ -20,6 +20,7 @@ import swim.api.plane.AbstractPlane;
 import swim.fabric.Fabric;
 import swim.kernel.Kernel;
 import swim.server.ServerLoader;
+import swim.structure.Num;
 import swim.structure.Value;
 
 public class BasicPlane extends AbstractPlane {
@@ -36,5 +37,10 @@ public class BasicPlane extends AbstractPlane {
     kernel.run();
 
     fabric.command("/unit/foo", "wakeup", Value.absent());
+
+//    for (int i = 0; i < 10; i++) {
+//      fabric.command("/unit/foo", "info", Num.from(i));
+//    }
+
   }
 }

@@ -1,22 +1,28 @@
+
+
+
 plugins {
     id 'java'
+    id 'application'
+    id 'idea'
+    id 'com.bmuschko.docker-java-application' version '6.4.0'
 }
-
-apply plugin: 'application'
-apply plugin: 'idea'
-group 'org.example'
-version '1.0-SNAPSHOT'
-mainClassName = 'basic.BasicPlane'
-
-apply plugin: 'application'
-apply plugin: 'idea'
-
-group = 'org.swimos'
-idea.module.outputDir file("out/production/classes")
 
 repositories {
     jcenter()
 }
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+mainClassName = 'basic.BasicPlane'
+
+group = 'org.swimos'
+idea.module.outputDir file("out/production/classes")
+
+apply from: 'gradle/docker.gradle'
 
 afterEvaluate {
     compileJava {
@@ -40,4 +46,14 @@ dependencies {
     compile group: 'org.swimos', name: 'swim-client', version: '3.10.0'
     compile group: 'org.swimos', name: 'swim-deflate', version: '3.9.1'
     compile files('libs/swim-ws.jar')
+}
+
+
+docker {
+    javaApplication {
+        baseImage = 'openjdk:12-jdk-alpine'
+        ports = [9001]
+        jvmArgs = ['-Xms256m', '-Xmx2048m']
+        mainClassName = 'basic.BasicPlane'
+    }
 }
