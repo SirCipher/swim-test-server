@@ -33,8 +33,9 @@ public class BasicPlane extends AbstractPlane {
     final Fabric fabric = (Fabric) kernel.getSpace("basic");
 
     kernel.start();
-    System.out.println("Running Basic server...");
     kernel.run();
+
+    System.out.println("Running Basic server...");
 
     fabric.command("/unit/foo", "wakeup", Value.absent());
 
