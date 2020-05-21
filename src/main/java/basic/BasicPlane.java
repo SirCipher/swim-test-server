@@ -35,13 +35,9 @@ public class BasicPlane extends AbstractPlane {
     kernel.start();
     kernel.run();
 
-    System.out.println("Running Basic server...");
-
     fabric.command("/unit/foo", "wakeup", Value.absent());
 
-//    for (int i = 0; i < 10; i++) {
-//      fabric.command("/unit/foo", "info", Num.from(i));
-//    }
+    System.out.println("Running Basic server...");
 
   }
 }
